@@ -27,7 +27,7 @@ import com.vaadin.ui.JavaScriptFunction;
 @JavaScript({"ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
  */
 
-@JavaScript({"ckeditor/ckeditor.js","ckeditor/config.js","ckeditor/skins/moono/editor.css","ckeditor/lang/en.js","ckeditor/styles.js","ckeditor/contents.css","ckeditor/skins/moono/icons.png","ckeditor/plugins/vaadinsave/plugin.js","ckeditor/plugins/vaadinsave/icons/vaadinsave.png","ckeditorForVaadin7.js","ckeditor-connector.js"})
+@JavaScript({"ckeditor/ckeditor.js","ckeditor/config.js","ckeditor/skins/moono/editor.css","ckeditor/skins/moono/editor_gecko.css","ckeditor/lang/en.js","ckeditor/styles.js","ckeditor/contents.css","ckeditor/skins/moono/icons.png","ckeditor/plugins/icons.png","ckeditor/plugins/vaadinsave/plugin.js","ckeditor/plugins/vaadinsave/icons/vaadinsave.png","ckeditorForVaadin7.js","ckeditor-connector.js"})
 public class CKEditor extends AbstractJavaScriptComponent {
 	
 	public CKEditor(CKEditorConfig config) {

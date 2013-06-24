@@ -15,7 +15,7 @@ var ckeditorForVaadin7 = ckeditorForVaadin7 || {};
 
 ckeditorForVaadin7.MyComponent = function(abstractJavaScriptComponent) {
 	var rootDiv = abstractJavaScriptComponent.getElement();
-	rootDiv.id = 'VCK_' + abstractJavaScriptComponent.getConnectorId();
+	rootDiv.id = 'VCKE_'+abstractJavaScriptComponent.getConnectorId();
 	rootDiv.style.overflow = "hidden";
 	rootDiv.style.visibility = "visible";
 	rootDiv.innerHTML = "";
@@ -30,7 +30,7 @@ ckeditorForVaadin7.MyComponent = function(abstractJavaScriptComponent) {
 	var inPageConfig = ckeditorForVaadin7.convertJavaScriptStringToObject(abstractJavaScriptComponent.getState().inPageConfig);
 	console.log('MyComponent creating CKEDITOR append to div id: ' + rootDiv.id + '; config: ' + abstractJavaScriptComponent.getState().inPageConfig);
 	abstractJavaScriptComponent.myCKEditor = CKEDITOR.appendTo( rootDiv.id, inPageConfig );
-	console.log('MyComponent create CKEDITOR: ' + abstractJavaScriptComponent.myCKEditor);
+	console.log('MyComponent created CKEDITOR: ' + abstractJavaScriptComponent.myCKEditor);
 	abstractJavaScriptComponent.myCKEditor.on('instanceReady', function(ev) {
 		ev.listenerData.onInstanceReady(CKEDITOR.version);
 		

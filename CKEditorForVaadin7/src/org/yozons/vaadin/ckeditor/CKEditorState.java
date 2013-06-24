@@ -22,7 +22,7 @@ public class CKEditorState extends JavaScriptComponentState {
 	private String writerIndentationChars = null;
 	private String[] protectedSources = null;
 	private String[] writerRulesTagNames = null; // these both go as a pair with the array lengths being equal
-	private String[] writerRulesRules = null;
+	private String[] writerRulesRules = null; // these both go as a pair with the array lengths being equal
 	private String version = "TBD";
 	private String html = "";
 	private boolean viewWithoutEditor = false; // when true, we don't use CKEditor at all, and just show the editor's HTML

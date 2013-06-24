@@ -110,7 +110,7 @@ public class CKEditorForVaadin7UI extends UI {
 		});
 		layout.addComponent(toggleViewWithoutEditorButton1);
 		
-		
+		/*
 		
 		// Now add in a second editor....
 		final String editor2InitialValue = 
@@ -206,7 +206,7 @@ public class CKEditorForVaadin7UI extends UI {
                     event.getButton().getUI().addWindow(sub);
             }
         }));
-
+*/
 		layout.addComponent(new Button("Open Non-Modal Subwindow with 100% Height", new ClickListener() {                      
 
 			@Override
@@ -226,12 +226,12 @@ public class CKEditorForVaadin7UI extends UI {
 	                config.enableVaadinSavePlugin();
                     // set BaseFloatZIndex 1000 higher than CKEditor's default of 10000; probably a result of an editor opening
                     // in a window that's on top of the main two editors of this demo app
-                    config.setBaseFloatZIndex(20000); 
-                    config.setStartupFocus(true);
+                    //config.setBaseFloatZIndex(20000); 
+                    //config.setStartupFocus(true);
 	                
 	                final CKEditor ckEditor = new CKEditor(config);
-	                //ckEditor.setHeight("100%");
-	                ckEditor.setHeight("450px");
+	                ckEditor.setHeight("100%");
+	                //ckEditor.setHeight("390px");
 	                ckEditor.addValueChangeListener(new ValueChangeListener() {
 
 						public void valueChange(String newValue) {
