@@ -8,19 +8,21 @@ Put the pre-built JAR file and in your Vaadin application's WEB-INF/lib.
 This has everything you need to use it, including a version of CKEditor.
 Because it's a pure JavaScriptComponent, it doesn't need a widgetset compilation.
 
+Unlike its predecessor, this cannot be used as a Field (FieldGroup or legacy Form).
+
 NOTE: This component is compiled using JDK 1.6 / Java 6.
 
 The CKEditor code, in full as downloaded from http://ckeditor.com, is present in the 
-src/org/yozons/vaadin/ckeditor/ckeditor folder.  No changes to CKEditor were made.
+WebContent/VAADIN/addon-js/CKEditorForVaadin7/ckeditor folder.  No changes to CKEditor were made.
 However, we remove the following files from the standard CKEditor distribution as they are not needed:
    ckeditor/samples
 If you are compiling yourself, you will need to install CKEditor code into your project
 as we do not check in the CKEditor code in our source code system.
 1) Download the latest ZIP file from ckeditor.com. We include the Full Editor version.
 2) Unzip/extract the contents -- you should have a 'ckeditor' folder.
-3) Copy the 'ckeditor' folder to src/org/yozons/vaadin/ckeditor/ckeditor.
+3) Copy the 'ckeditor' folder to WebContent/VAADIN/addon-js/CKEditorForVaadin7/.
 4) If you want to use the Vaadin Save button plugin, copy ckeditor/plugins/vaadinsave
-   to src/org/yozons/vaadin/ckeditor/ckeditor/plugins.
+   to WebContent/VAADIN/addon-js/CKEditorForVaadin7/ckeditor/plugins.
    This is already done in the released CKEditor for Vaadin 7 code.
 
   LICENSE
@@ -60,6 +62,7 @@ under the Creative Commons Attribution 3.0 License.
 - If using the previous Vaadin Directory add-on ("CKEditor wrapper for Vaadin", which supported Vaadin 6 and a quick port for Vaadin 7)
   located at http://vaadin.com/addon/ckeditor-wrapper-for-vaadin, you will want to change all references to 
   org.vaadin.openesignforms.ckeditor.CKEditorTextField to use instead org.yozons.vaadin.ckeditor.CKEditor. 
+  This is component is not a Field, and thus cannot be used in a FieldGroup or legacy Form.
   Note, too, that it only supports a new version of CKEditor.ValueChangeListener with the callback method 'valueChange(String newValue)'
   intead of the previous based on Vaadin events.
 
