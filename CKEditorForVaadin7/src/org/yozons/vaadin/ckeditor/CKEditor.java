@@ -23,13 +23,14 @@ import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.JavaScriptFunction;
 
 /*
-@JavaScript({"ckeditor/ckeditor.js","ckeditor/config.js","ckeditor/skins/moono/editor.css","ckeditor/lang/en.js","ckeditor/styles.js","ckeditor/contents.css","ckeditor/skins/moono/icons.png","ckeditor/plugins/vaadinsave/plugin.js","ckeditor/plugins/vaadinsave/icons/vaadinsave.png","ckeditorForVaadin7.js","ckeditor-connector.js"})
-@JavaScript({"ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
+@JavaScript({"app://VAADIN/addons/CKEditorForVaadin7/ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
+@JavaScript({"vaadin://ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
  */
 
-@JavaScript({"ckeditor/ckeditor.js","ckeditor/config.js","ckeditor/skins/moono/editor.css","ckeditor/skins/moono/editor_gecko.css","ckeditor/lang/en.js","ckeditor/styles.js","ckeditor/contents.css","ckeditor/skins/moono/icons.png","ckeditor/plugins/icons.png","ckeditor/plugins/vaadinsave/plugin.js","ckeditor/plugins/vaadinsave/icons/vaadinsave.png","ckeditorForVaadin7.js","ckeditor-connector.js"})
+@JavaScript({"app://VAADIN/addon-js/CKEditorForVaadin7/ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
 public class CKEditor extends AbstractJavaScriptComponent {
-	
+	private static final long serialVersionUID = 2232973682989450421L;
+
 	public CKEditor(CKEditorConfig config) {
 		System.out.println("CKEditor config: " + config.getInPageConfig());
 		setWidth(100, Unit.PERCENTAGE);
@@ -57,6 +58,7 @@ public class CKEditor extends AbstractJavaScriptComponent {
 		}
 		
 		addFunction("onInstanceReady", new JavaScriptFunction() {
+			private static final long serialVersionUID = -2199710366817990634L;
 
 			@Override
 			public void call(JSONArray arguments) throws JSONException {
@@ -68,6 +70,7 @@ public class CKEditor extends AbstractJavaScriptComponent {
 		});
 		
 		addFunction("onValueChange", new JavaScriptFunction() {
+			private static final long serialVersionUID = 6707318584258721663L;
 
 			@Override
 			public void call(JSONArray arguments) throws JSONException {
@@ -88,6 +91,7 @@ public class CKEditor extends AbstractJavaScriptComponent {
 		});
 		
 		addFunction("requestCompleted", new JavaScriptFunction() {
+			private static final long serialVersionUID = -3928003452480701563L;
 
 			@Override
 			public void call(JSONArray arguments) throws JSONException {

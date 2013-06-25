@@ -1,5 +1,5 @@
 File: CKEditorForVaadin7/README.txt
-Last updated: 23 June 2013
+Last updated: 25 June 2013
 
   USING CKEDITOR FOR VAADIN 7 IN YOUR APPLICATION
   ===============================================
@@ -53,7 +53,7 @@ under the Creative Commons Attribution 3.0 License.
   CHANGELOG
   =========
 
-0.9.0 (23 June 2013)
+0.9.0 (25 June 2013)
 - This early release is experimental.
 - Initial version running under Vaadin 7's AbstractJavaScriptComponent scheme rather than a GWT-based widget. No widgetset compilation is needed.
 - Using Vaadin 7.0.7 and CKEditor 4.1.2 full version.
