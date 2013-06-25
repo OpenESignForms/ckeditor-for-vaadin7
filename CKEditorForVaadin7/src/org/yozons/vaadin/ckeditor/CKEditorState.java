@@ -11,13 +11,11 @@
 //
 package org.yozons.vaadin.ckeditor;
 
-import java.util.HashMap;
-import java.util.List;
-
 import com.vaadin.shared.ui.JavaScriptComponentState;
 
 public class CKEditorState extends JavaScriptComponentState {
-	
+	private static final long serialVersionUID = 7712793232513048687L;
+
 	private String inPageConfig = null;
 	private String writerIndentationChars = null;
 	private String[] protectedSources = null;
