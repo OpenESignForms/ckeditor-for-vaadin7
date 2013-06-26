@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>CKEditorForVaadin7</display-name>
+<description>
+	Copyright (C) 2013 Yozons, Inc.
+	CKEditor for Vaadin test 7 web configuration. 
+</description>
+<!-- Set to true when in a production environment -->
+<context-param>
+  	<description>Vaadin production mode</description>
+  	<param-name>productionMode</param-name>
+  	<param-value>false</param-value>
+</context-param>
+
+<servlet>
+  	<servlet-name>CKEditorForVaadin7UI</servlet-name>
+	<servlet-class>com.vaadin.server.VaadinServlet</servlet-class>
+  	<init-param>
+  		<description>Vaadin UI class to start with</description>
+  		<param-name>UI</param-name>
+  		<param-value>org.yozons.vaadin.ckeditor.CKEditorForVaadin7UI</param-value>
+  	</init-param>
+</servlet>
+
+<!-- Servlet mappings -->
+<servlet-mapping>
+  	<servlet-name>CKEditorForVaadin7UI</servlet-name>
+  	<url-pattern>/*</url-pattern>
+</servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

@@ -32,10 +32,10 @@ window.org_yozons_vaadin_ckeditor_CKEditor = function() {
 			if ( myComponent.myCKEditor.getData() != this.getState().html ) {
 				myComponent.myCKEditor.setData(this.getState().html);
 			}
-			if ( this.getState().focus ) {
+			if ( this.getState().focusRequested ) {
 				console.log("focus requested");
 				myComponent.myCKEditor.focus();
-				this.requestCompleted('focus');
+				this.requestCompleted('focusRequested');
 			}
 		}
 	};

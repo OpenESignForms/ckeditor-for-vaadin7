@@ -29,7 +29,7 @@ ckeditorForVaadin7.MyComponent = function(abstractJavaScriptComponent) {
 	
 	var inPageConfig = ckeditorForVaadin7.convertJavaScriptStringToObject(abstractJavaScriptComponent.getState().inPageConfig);
 	console.log('MyComponent creating CKEDITOR append to div id: ' + rootDiv.id + '; config: ' + abstractJavaScriptComponent.getState().inPageConfig);
-	abstractJavaScriptComponent.myCKEditor = CKEDITOR.appendTo( rootDiv.id, inPageConfig );
+	abstractJavaScriptComponent.myCKEditor = CKEDITOR.appendTo( rootDiv, inPageConfig );
 	console.log('MyComponent created CKEDITOR: ' + abstractJavaScriptComponent.myCKEditor);
 	abstractJavaScriptComponent.myCKEditor.on('instanceReady', function(ev) {
 		ev.listenerData.onInstanceReady(CKEDITOR.version);

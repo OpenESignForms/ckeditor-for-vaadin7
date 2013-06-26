@@ -14,7 +14,7 @@ package org.yozons.vaadin.ckeditor;
 import com.vaadin.shared.ui.JavaScriptComponentState;
 
 public class CKEditorState extends JavaScriptComponentState {
-	private static final long serialVersionUID = 7712793232513048687L;
+	private static final long serialVersionUID = 341718779546025356L;
 
 	private String inPageConfig = null;
 	private String writerIndentationChars = null;
@@ -24,7 +24,7 @@ public class CKEditorState extends JavaScriptComponentState {
 	private String version = "TBD";
 	private String html = "";
 	private boolean viewWithoutEditor = false; // when true, we don't use CKEditor at all, and just show the editor's HTML
-	private Boolean focus = null; // when set, focus is requested
+	private Boolean focusRequested = null; // when set, focus is requested
 
 	public String getInPageConfig() {
 		return inPageConfig;
@@ -83,13 +83,13 @@ public class CKEditorState extends JavaScriptComponentState {
 		viewWithoutEditor = v;
 	}
 	
-	public boolean isFocus() {
-		return focus == null ? false : focus.booleanValue();
+	public boolean isFocusRequested() {
+		return focusRequested == null ? false : focusRequested.booleanValue();
 	}
-	public void setFocus(boolean v) {
-		focus = new Boolean(v);
+	public void setFocusRequested(boolean v) {
+		focusRequested = new Boolean(v);
 	}
-	public void clearFocus() {
-		focus = null;
+	public void clearFocusRequested() {
+		focusRequested = null;
 	}
 }

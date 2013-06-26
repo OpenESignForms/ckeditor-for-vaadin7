@@ -18,7 +18,7 @@ import java.util.Set;
  * Originally taken "as is" from org.vaadin.openesignforms.ckeditor.CKEditorConfig.java.
  */
 public class CKEditorConfig implements java.io.Serializable {
-	private static final long serialVersionUID = 4875117072373073186L;
+	private static final long serialVersionUID = -8967519571388739684L;
 
 	// If this is set, we'll just use it and ignore everything else.
 	protected String inPageConfig;
@@ -45,6 +45,7 @@ public class CKEditorConfig implements java.io.Serializable {
 	protected Integer resizeMaxHeight = null;
 	protected String width = null;
 	protected String height = null;
+	protected Boolean autoGrow_onStartup = null;
 	protected Integer baseFloatZIndex = null;
 	protected Integer tabSpaces = null;
 	protected Boolean pasteFromWordNumberedHeadingToList = null;
@@ -179,6 +180,10 @@ public class CKEditorConfig implements java.io.Serializable {
 			appendJSONConfig(config, "height : '" + height + "'");
 		}
 				
+		if ( autoGrow_onStartup != null ) {
+			appendJSONConfig(config, "autoGrow_onStartup : " + autoGrow_onStartup);
+		}
+
 		if ( baseFloatZIndex != null ) {
 			appendJSONConfig(config, "baseFloatZIndex : " + baseFloatZIndex);
 		}
@@ -443,6 +448,9 @@ public class CKEditorConfig implements java.io.Serializable {
 		addToExtraPlugins("vaadinsave"); 
 	}
 
+	public void enableAutoGrowPlugin() {
+		addToExtraPlugins("autogrow"); 
+	}
 	
 	/**
 	 * Convenience method for the Open eSignForms project sponsors to set the plugins and configuration in a common way needed.
@@ -462,6 +470,8 @@ public class CKEditorConfig implements java.io.Serializable {
 				 			 "{ items: ['Source','ShowBlocks'] }");
 
 		setHeight("300px");
+		enableAutoGrowPlugin();
+		setAutoGrow_onStartup(true);
 		setBaseFloatZIndex(20000);
 		setTabSpaces(4);
 		
@@ -622,6 +632,10 @@ public class CKEditorConfig implements java.io.Serializable {
 
 	public void setHeight(String cssSize) {
 		height = cssSize;
+	}
+	
+	public void setAutoGrow_onStartup(Boolean v) {
+		autoGrow_onStartup = v;
 	}
 	
 	public void setBaseFloatZIndex(int zIndex) {

@@ -12,32 +12,19 @@
 //
 package org.yozons.vaadin.ckeditor;
 
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-
-import org.yozons.vaadin.ckeditor.CKEditor.ValueChangeListener;
-
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
-@SuppressWarnings("serial")
 public class CKEditorForVaadin7UI extends UI {
-
-	@WebServlet(value = "/*", asyncSupported = true, initParams = {
-			@WebInitParam(name = "ui", value = "org.yozons.vaadin.ckeditor.CKEditorForVaadin7UI"),
-			@WebInitParam(name = "productionMode", value = "false") })
-	public static class Servlet extends VaadinServlet {
-	}
+	private static final long serialVersionUID = 375264049416405695L;
 
 	@Override
 	protected void init(VaadinRequest request) {
@@ -52,36 +39,37 @@ public class CKEditorForVaadin7UI extends UI {
 		layout.addComponent(new Button("Hit server"));
 		
 		final String editor1InitialValue = 
-				"<p>CKEditor for Vaadin 7 is an entirely new JavaScriptComponent add-on.</p>";
+				"<p>CKEditor for Vaadin 7 is an entirely new JavaScriptComponent add-on. It comes with CKEditorField for use in FieldGroups.</p>";
 
 		CKEditorConfig config1 = new CKEditorConfig();
 		config1.useCompactTags();
 		config1.disableElementsPath();
 		config1.setResizeDir(CKEditorConfig.RESIZE_DIR.HORIZONTAL);
 		config1.disableSpellChecker();
-		final CKEditor editor1 = new CKEditor(config1,editor1InitialValue);
-		layout.addComponent(editor1);
+		final CKEditorField editorField1 = new CKEditorField(config1);
+		editorField1.setHeight(350, Unit.PIXELS);
+		editorField1.setValue(editor1InitialValue);
+		layout.addComponent(editorField1);
 		
-		editor1.addValueChangeListener(new ValueChangeListener() {
+		editorField1.addValueChangeListener( new CKEditorField.ValueChangeListener() {
+			private static final long serialVersionUID = 9185055723329190225L;
 
 			@Override
-			public void valueChange(String newValue) {
-				if ( ! newValue.equals(editor1.getValue()) )
-					Notification.show("ERROR - Event value does not match editor #1's current value");
-				else
-					Notification.show("ValueChangeListener CKEditor v" + editor1.getVersion() + "/" + getVersion() + " - #1 contents: " + newValue);
-				editor1.focus();
+			public void valueChange(ValueChangeEvent event) {
+				Notification.show("ValueChangeListener CKEditorField v" + editorField1.getVersion() + "/" + getVersion() + " - #1 contents: " + event.getProperty().getValue());
+				editorField1.focus();
 			}
 		});
 		
 		Button testButton = new Button("Reset editor #1");
-		testButton.addClickListener( new ClickListener() {
+		testButton.addClickListener( new Button.ClickListener() {
+			private static final long serialVersionUID = 7345617947432390275L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				if ( ! editor1.isReadOnly() ) {
-					editor1.setValue(editor1InitialValue);
-					Notification.show("Reset CKEditor v" + editor1.getVersion() + "/" + getVersion() + " - #1 contents: " + editor1.getValue());
+				if ( ! editorField1.isReadOnly() ) {
+					editorField1.setValue(editor1InitialValue);
+					Notification.show("Reset CKEditor v" + editorField1.getVersion() + "/" + getVersion() + " - #1 contents: " + editorField1.getValue());
 				}
 			}
 			
@@ -91,19 +79,22 @@ public class CKEditorForVaadin7UI extends UI {
 		
 		Button toggleReadOnlyButton1 = new Button("Toggle read-only editor #1");
 		toggleReadOnlyButton1.addClickListener( new Button.ClickListener() {			
+			private static final long serialVersionUID = 5397350802604423436L;
+
 			@Override
 			public void buttonClick(ClickEvent event) {
-				editor1.setReadOnly( ! editor1.isReadOnly() );
+				editorField1.setReadOnly( ! editorField1.isReadOnly() );
 			}
 		});
 		layout.addComponent(toggleReadOnlyButton1);
 
 		Button toggleViewWithoutEditorButton1 = new Button("Toggle view-without-editor #1");
 		toggleViewWithoutEditorButton1.addClickListener( new Button.ClickListener() {			
+			private static final long serialVersionUID = -2384699205371260656L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				editor1.setViewWithoutEditor( ! editor1.isViewWithoutEditor() );
+				editorField1.setViewWithoutEditor( ! editorField1.isViewWithoutEditor() );
 			}
 		});
 		layout.addComponent(toggleViewWithoutEditorButton1);
@@ -119,10 +110,12 @@ public class CKEditorForVaadin7UI extends UI {
 
 		final CKEditor editor2 = new CKEditor(config2);
 		editor2.setWidth(600,Unit.PIXELS);
+		editor2.setHeight(350,Unit.PIXELS);
 		layout.addComponent(editor2);
 		editor2.setValue(editor2InitialValue);
 		
-		editor2.addValueChangeListener(new ValueChangeListener() {
+		editor2.addValueChangeListener(new CKEditor.ValueChangeListener() {
+			private static final long serialVersionUID = 218655218268367871L;
 
 			public void valueChange(String newValue) {
 				if ( ! newValue.equals(editor2.getValue()) )
@@ -134,12 +127,13 @@ public class CKEditorForVaadin7UI extends UI {
 		
 		Button resetTextButton2 = new Button("Reset editor #2");
 		resetTextButton2.addClickListener( new Button.ClickListener() {			
+			private static final long serialVersionUID = 4901941614079161802L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
 				if ( ! editor2.isReadOnly() ) {
 					editor2.setValue(editor2InitialValue);
-					Notification.show("Reset CKEditor v" + editor1.getVersion() + "/" + getVersion() + " - #2 contents: " + editor2.getValue());
+					Notification.show("Reset CKEditor v" + editor2.getVersion() + "/" + getVersion() + " - #2 contents: " + editor2.getValue());
 				}
 			}
 		});
@@ -147,6 +141,7 @@ public class CKEditorForVaadin7UI extends UI {
 		
 		Button toggleReadOnlyButton2 = new Button("Toggle read-only editor #2");
 		toggleReadOnlyButton2.addClickListener( new Button.ClickListener() {			
+			private static final long serialVersionUID = -5479701197466348253L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -157,7 +152,8 @@ public class CKEditorForVaadin7UI extends UI {
 
 		Button toggleViewWithoutEditorButton2 = new Button("Toggle view-without-editor #2");
 		toggleViewWithoutEditorButton2.addClickListener( new Button.ClickListener() {			
-	
+			private static final long serialVersionUID = 851106455148339016L;
+
 			@Override
 			public void buttonClick(ClickEvent event) {
 				editor2.setViewWithoutEditor( ! editor2.isViewWithoutEditor() );
@@ -166,7 +162,8 @@ public class CKEditorForVaadin7UI extends UI {
 		layout.addComponent(toggleViewWithoutEditorButton2);
 
 		// Now some extra tests for modal windows, etc.
-		layout.addComponent(new Button("Open Modal Subwindow", new ClickListener() {                      
+		layout.addComponent(new Button("Open Modal Subwindow", new Button.ClickListener() {                      
+			private static final long serialVersionUID = 3588690707843148999L;
 
 			@Override
             public void buttonClick(ClickEvent event) {
@@ -185,7 +182,8 @@ public class CKEditorForVaadin7UI extends UI {
                     config.setHeight("150px");
                     
                     final CKEditor ckEditor = new CKEditor(config);
-	                ckEditor.addValueChangeListener(new ValueChangeListener() {
+	                ckEditor.addValueChangeListener(new CKEditor.ValueChangeListener() {
+						private static final long serialVersionUID = -726248060054911895L;
 
 						public void valueChange(String newValue) {
 							Notification.show("CKEditor v" + ckEditor.getVersion() + "/" + getVersion() + " - POPUP MODAL contents: " + newValue);
@@ -203,7 +201,8 @@ public class CKEditorForVaadin7UI extends UI {
             }
         }));
 
-		layout.addComponent(new Button("Open Non-Modal Subwindow with 100% Height", new ClickListener() {                      
+		layout.addComponent(new Button("Open Non-Modal Subwindow with 100% Height", new Button.ClickListener() {                      
+			private static final long serialVersionUID = 7205486861557298396L;
 
 			@Override
 	        public void buttonClick(ClickEvent event) {
@@ -220,25 +219,30 @@ public class CKEditorForVaadin7UI extends UI {
 	                config.disableElementsPath();
 	                config.disableSpellChecker();
 	                config.enableVaadinSavePlugin();
+	                config.enableAutoGrowPlugin();
+	                config.setAutoGrow_onStartup(true);
                     // set BaseFloatZIndex 1000 higher than CKEditor's default of 10000; probably a result of an editor opening
                     // in a window that's on top of the main two editors of this demo app
                     config.setBaseFloatZIndex(11000); 
                     config.setStartupFocus(true);
 	                
-	                final CKEditor ckEditor = new CKEditor(config);
-	                ckEditor.setHeight("100%");
-	                ckEditor.addValueChangeListener(new ValueChangeListener() {
+	                final CKEditorField ckEditorField = new CKEditorField(config);
+	                ckEditorField.addValueChangeListener(new CKEditorField.ValueChangeListener() {
+						private static final long serialVersionUID = 51942525209836945L;
 
-						public void valueChange(String newValue) {
-							Notification.show("CKEditor v" + ckEditor.getVersion() + "/" + getVersion() + " - POPUP NON-MODAL 100% HEIGHT contents: " + ckEditor.getValue());
-	        			}
+						@Override
+						public void valueChange(ValueChangeEvent event) {
+							Notification.show("ValueChangeListener CKEditorField v" + ckEditorField.getVersion() + "/" + getVersion() + " - POPUP NON-MODAL 100% HEIGHT contents: " + event.getProperty().getValue());
+							editorField1.focus();
+						}
 	        		});
-	                subLayout.addComponent(ckEditor);
-	                subLayout.setExpandRatio(ckEditor,1.0f);
+	                subLayout.addComponent(ckEditorField);
+	                subLayout.setExpandRatio(ckEditorField,1.0f);
 	                
 	                final TextField textField = new TextField("TextField");
 	                textField.setImmediate(true);
 	                textField.addValueChangeListener(new Property.ValueChangeListener() {
+						private static final long serialVersionUID = 2190248458901879579L;
 
 						public void valueChange(ValueChangeEvent event) {
 							Notification.show("TextField - POPUP NON-MODAL 100% HEIGHT contents: " + event.getProperty().getValue().toString());
