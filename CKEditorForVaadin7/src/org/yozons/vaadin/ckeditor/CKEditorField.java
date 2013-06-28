@@ -34,6 +34,7 @@ public class CKEditorField extends CustomField<String> {
 	public CKEditorField(CKEditorConfig config) {
 		this.thisField = this;
 		this.config = config;
+		this.setSizeFull();
 	}
 	
 	public CKEditorField(CKEditorConfig config, String initialHtmlValue) {
@@ -76,6 +77,18 @@ public class CKEditorField extends CustomField<String> {
     	}
     }
 	
+    @Override
+	public boolean isReadOnly() {
+		return editor == null ? false : editor.isReadOnly();
+	}
+    @Override
+	public void setReadOnly(boolean v) {
+		if ( editor != null ) {
+			editor.setReadOnly(v);
+		}
+		super.setReadOnly(v);
+	}
+
     @Override
     public void setWidth(float width, Unit unit) {
     	if ( editor != null ) {

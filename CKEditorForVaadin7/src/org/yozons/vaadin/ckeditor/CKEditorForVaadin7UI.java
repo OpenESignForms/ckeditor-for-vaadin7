@@ -39,7 +39,7 @@ public class CKEditorForVaadin7UI extends UI {
 		layout.addComponent(new Button("Hit server"));
 		
 		final String editor1InitialValue = 
-				"<p>CKEditor for Vaadin 7 is an entirely new JavaScriptComponent add-on. It comes with CKEditorField for use in FieldGroups.</p>";
+				"<p>CKEditor for Vaadin 7 is an entirely new JavaScriptComponent add-on. It comes with CKEditorField for use in FieldGroups, like this editor.</p>";
 
 		CKEditorConfig config1 = new CKEditorConfig();
 		config1.useCompactTags();
@@ -101,7 +101,7 @@ public class CKEditorForVaadin7UI extends UI {
 		
 		// Now add in a second editor....
 		final String editor2InitialValue = 
-			"<p>Here is editor #2.</p><h1>Hope you find this useful in your Vaadin 7 projects.</h1>";
+			"<p>Here is editor #2 as a CKEditor JavaScriptComponent.</p><h1>Hope you find this useful in your Vaadin 7 projects.</h1>";
 
 		CKEditorConfig config2 = new CKEditorConfig();
 		config2.addCustomToolbarLine("{ items : ['Source','Styles','Bold','VaadinSave','-','Undo','Redo','-','NumberedList','BulletedList'] }");
@@ -208,19 +208,17 @@ public class CKEditorForVaadin7UI extends UI {
 	        public void buttonClick(ClickEvent event) {
 	                Window sub = new Window("Subwindow non-modal 100% height");
 	                VerticalLayout subLayout = new VerticalLayout();
+	                subLayout.setSizeFull();
 	                sub.setContent(subLayout);
 	                sub.setWidth("80%");
 	                sub.setHeight("500px");
-
-	                subLayout.setSizeFull();
+	                UI.getCurrent().addWindow(sub);
 	                
 	                CKEditorConfig config = new CKEditorConfig();
 	                config.useCompactTags();
 	                config.disableElementsPath();
 	                config.disableSpellChecker();
 	                config.enableVaadinSavePlugin();
-	                config.enableAutoGrowPlugin();
-	                config.setAutoGrow_onStartup(true);
                     // set BaseFloatZIndex 1000 higher than CKEditor's default of 10000; probably a result of an editor opening
                     // in a window that's on top of the main two editors of this demo app
                     config.setBaseFloatZIndex(11000); 
@@ -251,13 +249,12 @@ public class CKEditorForVaadin7UI extends UI {
 	                subLayout.addComponent(textField);
 	                
 	                sub.center();
-	                
-	                event.getButton().getUI().addWindow(sub);
 	        }
         }));
+
 	}
 
 	public String getVersion() {
-		return "0.9.0_pre20130625";
+		return "0.9.0_pre20130627";
 	}
 }

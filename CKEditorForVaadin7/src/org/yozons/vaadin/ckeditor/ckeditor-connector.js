@@ -15,7 +15,7 @@ window.org_yozons_vaadin_ckeditor_CKEditor = function() {
 	
 	// Handle changes from the server side
 	this.onStateChange = function() {
-		console.log("on state change: editor id: " + this.myCKEditor.id + "; cid: " + this.getConnectorId() + "; viewWithoutEditor: " + this.getState().viewWithoutEditor + "; readOnly: " + this.getState().readOnly + " >>>" + this.getState().html + "<<<");
+		console.log("DEBUG: CKEditor onStateChange: editor id: " + this.myCKEditor.id + "; cid: " + this.getConnectorId() + "; viewWithoutEditor: " + this.getState().viewWithoutEditor + "; readOnly: " + this.getState().readOnly + " >>>" + this.getState().html + "<<<");
 		if ( this.getState().viewWithoutEditor ) {
 			if ( myComponent.myCKEditor != null ) {
 				myComponent.myCKEditor.destroy();
@@ -26,16 +26,19 @@ window.org_yozons_vaadin_ckeditor_CKEditor = function() {
 			if ( myComponent == null ) {
 				myComponent = new ckeditorForVaadin7.MyComponent(this);
 			}
-			if ( myComponent.myCKEditor.readOnly != this.getState().readOnly ) {
-				myComponent.myCKEditor.setReadOnly(this.getState().readOnly);
-			}
-			if ( myComponent.myCKEditor.getData() != this.getState().html ) {
-				myComponent.myCKEditor.setData(this.getState().html);
-			}
-			if ( this.getState().focusRequested ) {
-				console.log("focus requested");
-				myComponent.myCKEditor.focus();
-				this.requestCompleted('focusRequested');
+			if ( this.getState().editorReady ) {
+				if ( myComponent.myCKEditor.readOnly != this.getState().readOnly ) {
+					myComponent.myCKEditor.setReadOnly(this.getState().readOnly);
+				}
+				if ( myComponent.myCKEditor.getData() != this.getState().html ) {
+					myComponent.myCKEditor.setData(this.getState().html);
+				}
+				if ( this.getState().focusRequested ) {
+					myComponent.myCKEditor.focus();
+					this.requestCompleted('focusRequested');
+				}
+			} else {
+				console.log("DEBUG: CKEditor component is not yet ready -- ignoring onStateChange");
 			}
 		}
 	};

@@ -22,18 +22,17 @@ import com.vaadin.annotations.JavaScript;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 import com.vaadin.ui.JavaScriptFunction;
 
-/*
-@JavaScript({"app://../VAADIN/addon-js/CKEditorForVaadin7/ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
-@JavaScript({"app://VAADIN/addons/CKEditorForVaadin7/ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
-@JavaScript({"vaadin://ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
+/**
+ * CKEditor is a JavaScriptComponent. It provides a wrapper and communications glue between CKEditor (a JavaScript library) and Vaadin.
+ * 
+ * Please use CKEditorField if you want the component to work in a FieldGroup (or legacy Form).
+ * @author Yozons, Inc.
  */
-
-@JavaScript({"app://VAADIN/addon-js/CKEditorForVaadin7/ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
+@JavaScript({"vaadin://addon-js/CKEditorForVaadin7/ckeditor/ckeditor.js","ckeditorForVaadin7.js","ckeditor-connector.js"})
 public class CKEditor extends AbstractJavaScriptComponent {
 	private static final long serialVersionUID = 2232973682989450421L;
 
 	public CKEditor(CKEditorConfig config) {
-		System.out.println("CKEditor config: " + config.getInPageConfig());
 		setSizeFull();
 		setValue("");
 		getState().setInPageConfig(config.getInPageConfig());
@@ -63,8 +62,8 @@ public class CKEditor extends AbstractJavaScriptComponent {
 			@Override
 			public void call(JSONArray arguments) throws JSONException {
 				String version = arguments.getString(0);
-				System.out.println("CKEditor onInstanceReady(): " + version);
 				getState().setVersion(version);
+				getState().setEditorReady(true);
 			}
 			
 		});
@@ -76,7 +75,6 @@ public class CKEditor extends AbstractJavaScriptComponent {
 			public void call(JSONArray arguments) throws JSONException {
 				if ( ! isReadOnly() ) {
 					String value = arguments.getString(0);
-					System.out.println("CKEditor onValueChange() >>>" + value + "<<<");
 					getState().setHtml(value);
 			    	synchronized(valueChangeListeners) {
 			    		for( ValueChangeListener listener : valueChangeListeners ) {
@@ -84,7 +82,7 @@ public class CKEditor extends AbstractJavaScriptComponent {
 			    		}
 			    	}
 				} else {
-					System.out.println("CKEditor onValueChange() ignored because read-only");
+					System.err.println("CKEditor onValueChange ignored because editor is read-only");
 				}
 			}
 			
@@ -97,14 +95,13 @@ public class CKEditor extends AbstractJavaScriptComponent {
 			public void call(JSONArray arguments) throws JSONException {
 				if ( arguments.length() == 1 ) {
 					String completedRequest = arguments.getString(0);
-					System.out.println("requestCompleted - updating shared state for type: " + completedRequest);
 					if ( "focusRequested".equals(completedRequest) ) {
 						getState().clearFocusRequested();
 					} else {
-						System.err.println("requestCompleted: cannot update shared state for unexpected completedRequest type: " + completedRequest);
+						System.err.println("ERROR: requestCompleted: cannot update shared state for unexpected completedRequest type: " + completedRequest);
 					}
 				} else {
-					System.err.println("requestCompleted: Missing required single argument.");
+					System.err.println("ERROR: requestCompleted: Missing required single argument.");
 				}
 			}
 			
