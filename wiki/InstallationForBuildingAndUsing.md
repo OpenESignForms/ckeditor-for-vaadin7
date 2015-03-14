@@ -1,8 +1,8 @@
-1. Introduction 
+#1. Introduction
 
 You may also want to read the README.txt file for other details. It only works on Vaadin 7.
 
-2. Details 
+#2. Details
 
 The JAR file included has CKEditor and the JavaScriptComponent all compiled and ready to use.  Just drop the JAR file in your Vaadin project's WEB-INF/lib and you can use the example application in src/org/yozons/vaadin/ckeditor/CKEditorForVaadin7UI.java for a quick tip on using it as a Vaadin 7 component.
 
