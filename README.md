@@ -1,7 +1,7 @@
 # ckeditor-for-vaadin7
 (Automatically exported from code.google.com/p/ckeditor-for-vaadin7 on 3/14/2015)
 
-CKEditor is a javascript-based HTML "rich text" WYSIWYG editor that works in common browsers. This JavaScriptComponent? provides a wrapper around it for use in a Vaadin 7-based application.
+CKEditor is a javascript-based HTML "rich text" WYSIWYG editor that works in common browsers. This JavaScriptComponent provides a wrapper around it for use in a Vaadin 7-based application.
 
 **THIS PROJECT HAS STALLED. MOST CONTINUE TO USE THE PREVIOUS PROJECT VERSION FOR NOW:**
 
