@@ -1,6 +1,8 @@
 File: CKEditorForVaadin7/README.txt
 Last updated: 25 June 2013
 
+First change from Eclipse via GIT/GITHUB repository usage.
+
   USING CKEDITOR FOR VAADIN 7 IN YOUR APPLICATION
   ===============================================
 
